@@ -3,6 +3,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
 import com.google.cloud.vision.v1.*;
 import com.google.protobuf.ByteString;
 import org.openqa.selenium.*;
@@ -75,7 +76,14 @@ public class getCaptcha {
         }
     }
 
+
+
     public static void detectText(String filePath) throws Exception, IOException {
+
+
+
+        //https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDdGrCOmv4WW3Xt53U2l0ReyYI-tVJ4HSw
+
         List<AnnotateImageRequest> requests = new ArrayList<>();
 
         ByteString imgBytes = ByteString.readFrom(new FileInputStream(filePath));
@@ -85,6 +93,7 @@ public class getCaptcha {
         AnnotateImageRequest request =
                 AnnotateImageRequest.newBuilder().addFeatures(feat).setImage(img).build();
         requests.add(request);
+
 
         try (ImageAnnotatorClient client = ImageAnnotatorClient.create()) {
             BatchAnnotateImagesResponse response = client.batchAnnotateImages(requests);
@@ -107,6 +116,8 @@ public class getCaptcha {
 
 
         public static void main(String[] args) throws Exception {
+            authAPI api = new authAPI();
+            api.GVision();
             System.out.println(getImgText("./captcha.png"));
             detectText("./captcha.png");
             //getPrintScreen("https://sajtopub.nmhh.hu/sajto_kozzetetel/app/elerhetoseg.jsp?i=3861944&f=I");
