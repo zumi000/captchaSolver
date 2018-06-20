@@ -1,0 +1,6 @@
+*.png
+/.gradle/
+/gradle/
+/.idea/
+/out/
+hs_err*.*
