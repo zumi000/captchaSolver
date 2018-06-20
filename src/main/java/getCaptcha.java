@@ -1,3 +1,4 @@
+import net.sourceforge.tess4j.util.LoadLibs;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.Augmenter;
@@ -38,7 +39,10 @@ public class getCaptcha {
             BufferedImage subImgage = originalImgage.getSubimage(x, y, w, h);
             File outputfile = new File("./captcha.png");
             ImageIO.write(subImgage, "png", outputfile);
+            String currentDir = System.getProperty("user.dir");
+            System.out.println("Current dir using System:" +currentDir);
             System.out.println(getImgText("./captcha.png"));
+            System.out.println("solved");
 
 
 
@@ -52,6 +56,7 @@ public class getCaptcha {
         try
         {
             String imgText = instance.doOCR(new File(imageLocation));
+
             return imgText;
         }
         catch (TesseractException e)
